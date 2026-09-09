@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuidado Acolhedor | Maternidade</title>
+
+    <!-- Fontes Google (Cormorant Garamond para títulos e Plus Jakarta Sans para leitura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons para os botões -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-color: #faf8f7;
+            --primary: #372a44;
+            --primary-hover: #291e34;
+            --text-main: #2e2832;
+            --text-muted: #746b79;
+            --badge-color: #a4979e;
+            --card-bg: #ffffff;
+            --border-color: #ede7e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Elementos de fundo abstratos */
+        .bg-circle-top {
+            position: absolute;
+            top: 10%;
+            right: 25%;
+            width: 60px;
+            height: 60px;
+            background: #f1ebe8;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .bg-circle-bottom {
+            position: absolute;
+            bottom: 12%;
+            right: 38%;
+            width: 130px;
+            height: 130px;
+            border: 1px solid #e7dfdc;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Header / Navbar */
+        header {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid #d4c7c3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 40px 32px 100px 32px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+            min-height: calc(100vh - 120px);
+        }
+
+        .hero-content {
+            max-width: 580px;
+        }
+
+        .badge-sub {
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--badge-color);
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.8rem;
+            line-height: 1.08;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 28px;
+        }
+
+        .hero-description {
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 38px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(55, 42, 68, 0.12);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 13px 26px;
+            border-radius: 9999px;
+            border: 1px solid #e1d8d5;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f3ece9;
+            border-color: #d1c5c1;
+        }
+
+        /* Imagem Orgânica Oval */
+        .hero-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .organic-image {
+            width: 100%;
+            max-width: 440px;
+            height: 520px;
+            object-fit: cover;
+            /* Formato oval suave característico da referência */
+            border-radius: 46% 46% 48% 48% / 54% 54% 44% 44%;
+            box-shadow: 0 15px 35px rgba(85, 60, 68, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Pílula Flutuante Inferior */
+        .floating-bar-container {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            z-index: 20;
+        }
+
+        .floating-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #9c9197;
+            font-weight: 600;
+        }
+
+        .floating-pill {
+            background: var(--primary);
+            padding: 5px 6px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 8px 24px rgba(41, 30, 52, 0.25);
+        }
+
+        .pill-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            color: #dfd8e2;
+        }
+
+        .pill-btn.active {
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+        }
+
+        .pill-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        /* Responsividade para tablets e celulares */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 20px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .organic-image {
+                max-width: 320px;
+                height: 380px;
+            }
+
+            .nav-links {
+                display: none;
+                /* Em mobile você pode implementar menu hambúrguer */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Círculos decorativos de fundo -->
+    <div class="bg-circle-top"></div>
+    <div class="bg-circle-bottom"></div>
+
+    <!-- Header / Barra de Navegação -->
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon">🌿</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-content">
+            <span class="badge-sub">Cuidado Humanizado</span>
+            <h1 class="hero-title">
+                Cuidado acolhedor<br />
+                para cada fase da<br />
+                maternidade
+            </h1>
+            <p class="hero-description">
+                Ofereço orientação especializada e personalizada para gestantes, mães e famílias,
+                desde a gestação até os primeiros dias do bebê, com conhecimento técnico, acolhimento
+                e carinho para que você viva cada fase com mais segurança e tranquilidade.
+            </p>
+            <div class="hero-actions">
+                <a href="#contato" class="btn-primary">Agendar Consulta</a>
+                <a href="#servicos" class="btn-secondary">Conhecer Serviços</a>
+            </div>
+        </div>
+
+        <!-- Imagem em formato orgânico/oval -->
+        <div class="hero-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=900&auto=format&fit=crop"
+                alt="Mão de mãe segurando mão do bebê recém-nascido" class="organic-image" />
+        </div>
+    </main>
+
+    <!-- Barra de Ações Flutuante Inferior -->
+    <div class="floating-bar-container">
+        <span class="floating-label">Explore</span>
+        <div class="floating-pill">
+            <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="pill-btn active">
+                <i data-lucide="message-circle" style="width: 15px; height: 15px;"></i>
+                WhatsApp
+            </a>
+            <a href="#localizacao" class="pill-btn">
+                <i data-lucide="map-pin" style="width: 15px; height: 15px;"></i>
+                Localização
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Inicializa os ícones SVG do Lucide
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
