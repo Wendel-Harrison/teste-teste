@@ -1,379 +1,997 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cuidado Acolhedor | Maternidade</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suellen Stuqui | Cuidado Humanizado na Maternidade</title>
 
-    <!-- Fontes Google (Cormorant Garamond para títulos e Plus Jakarta Sans para leitura) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+  <!-- Tipografia: Cormorant Garamond (títulos elegantes) e Plus Jakarta Sans (leitura limpa) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons para os botões -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        :root {
-            --bg-color: #faf8f7;
-            --primary: #372a44;
-            --primary-hover: #291e34;
-            --text-main: #2e2832;
-            --text-muted: #746b79;
-            --badge-color: #a4979e;
-            --card-bg: #ffffff;
-            --border-color: #ede7e5;
-        }
+  <style>
+    :root {
+      --bg-color: #faf8f7;
+      --primary: #372a44;
+      --primary-hover: #291e34;
+      --text-main: #2e2832;
+      --text-muted: #746b79;
+      --badge-color: #c4b5bb;
+      --border-color: #ece5e3;
+      --card-bg: #ffffff;
+      --dark-footer: #423b56;
+      --accent-pink: #d9b8c4;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        /* Elementos de fundo abstratos */
-        .bg-circle-top {
-            position: absolute;
-            top: 10%;
-            right: 25%;
-            width: 60px;
-            height: 60px;
-            background: #f1ebe8;
-            border-radius: 50%;
-            z-index: 1;
-            opacity: 0.7;
-        }
+    /* Container base */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
-        .bg-circle-bottom {
-            position: absolute;
-            bottom: 12%;
-            right: 38%;
-            width: 130px;
-            height: 130px;
-            border: 1px solid #e7dfdc;
-            border-radius: 50%;
-            z-index: 1;
-        }
+    /* Círculos decorativos de fundo */
+    .bg-circle-top {
+      position: absolute;
+      top: 8%;
+      right: 22%;
+      width: 65px;
+      height: 65px;
+      background: #f1ebe8;
+      border-radius: 50%;
+      z-index: 1;
+      opacity: 0.7;
+    }
 
-        /* Header / Navbar */
-        header {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 24px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-        }
+    .bg-circle-bottom {
+      position: absolute;
+      top: 38%;
+      right: 36%;
+      width: 140px;
+      height: 140px;
+      border: 1px solid #e7dfdc;
+      border-radius: 50%;
+      z-index: 1;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--primary);
-        }
+    /* Header / Navbar */
+    header {
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(250, 248, 247, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(236, 229, 227, 0.5);
+    }
 
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            border: 1.5px solid #d4c7c3;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary);
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            font-weight: 400;
-            transition: color 0.2s ease;
-        }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid #d4c7c3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
 
-        /* Hero Section */
-        .hero {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 40px 32px 100px 32px;
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            align-items: center;
-            gap: 60px;
-            position: relative;
-            z-index: 2;
-            min-height: calc(100vh - 120px);
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
 
-        .hero-content {
-            max-width: 580px;
-        }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
 
-        .badge-sub {
-            font-size: 0.75rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--badge-color);
-            font-weight: 600;
-            margin-bottom: 24px;
-            display: block;
-        }
+    /* Utilitários tipográficos */
+    .badge-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--badge-color);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
 
-        .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.8rem;
-            line-height: 1.08;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 28px;
-        }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
 
-        .hero-description {
-            font-size: 0.98rem;
-            line-height: 1.75;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 38px;
-        }
+    /* Seção 1: Hero */
+    .hero {
+      padding: 60px 0 100px 0;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 60px;
+      min-height: calc(100vh - 120px);
+      position: relative;
+      z-index: 2;
+    }
 
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.8rem;
+      line-height: 1.08;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 28px;
+    }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(55, 42, 68, 0.12);
-        }
+    .hero-description {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 38px;
+      max-width: 530px;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            padding: 13px 26px;
-            border-radius: 9999px;
-            border: 1px solid #e1d8d5;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 14px 30px;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(55, 42, 68, 0.12);
+    }
 
-        .btn-secondary:hover {
-            background-color: #f3ece9;
-            border-color: #d1c5c1;
-        }
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
 
-        /* Imagem Orgânica Oval */
-        .hero-image-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
+      padding: 13px 28px;
+      border-radius: 9999px;
+      border: 1px solid #e1d8d5;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
 
-        .organic-image {
-            width: 100%;
-            max-width: 440px;
-            height: 520px;
-            object-fit: cover;
-            /* Formato oval suave característico da referência */
-            border-radius: 46% 46% 48% 48% / 54% 54% 44% 44%;
-            box-shadow: 0 15px 35px rgba(85, 60, 68, 0.08);
-            position: relative;
-            z-index: 2;
-        }
+    .btn-secondary:hover {
+      background-color: #f3ece9;
+    }
 
-        /* Pílula Flutuante Inferior */
-        .floating-bar-container {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            z-index: 20;
-        }
+    .hero-image-wrapper {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
 
-        .floating-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #9c9197;
-            font-weight: 600;
-        }
+    .organic-image {
+      width: 100%;
+      max-width: 440px;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 46% 46% 48% 48% / 54% 54% 44% 44%;
+      box-shadow: 0 15px 35px rgba(85, 60, 68, 0.08);
+    }
 
-        .floating-pill {
-            background: var(--primary);
-            padding: 5px 6px;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 8px 24px rgba(41, 30, 52, 0.25);
-        }
+    /* Seção 2: Serviços */
+    .services-section {
+      padding: 100px 0;
+      position: relative;
+    }
 
-        .pill-btn {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 8px 16px;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            color: #dfd8e2;
-        }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
 
-        .pill-btn.active {
-            background: rgba(255, 255, 255, 0.16);
-            color: #ffffff;
-        }
+    .carousel-arrows {
+      display: flex;
+      gap: 12px;
+    }
 
-        .pill-btn:hover {
-            background: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-        }
+    .arrow-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #dfd5d2;
+      background: transparent;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-        /* Responsividade para tablets e celulares */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding-top: 20px;
-                text-align: center;
-            }
+    .arrow-btn:hover {
+      background: #ffffff;
+      border-color: var(--primary);
+    }
 
-            .hero-content {
-                margin: 0 auto;
-            }
+    .services-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 20px;
+      scrollbar-width: none;
+    }
 
-            .hero-title {
-                font-size: 2.8rem;
-            }
+    .services-scroll::-webkit-scrollbar {
+      display: none;
+    }
 
-            .hero-actions {
-                justify-content: center;
-            }
+    .service-card {
+      min-width: 285px;
+      max-width: 285px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+      border: 1px solid #f2ece9;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
 
-            .organic-image {
-                max-width: 320px;
-                height: 380px;
-            }
+    .service-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-            .nav-links {
-                display: none;
-                /* Em mobile você pode implementar menu hambúrguer */
-            }
-        }
-    </style>
+    .service-card-body {
+      padding: 24px;
+      flex-grow: 1;
+    }
+
+    .service-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .service-card-desc {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Seção 3: Cursos para Casais */
+    .courses-section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .courses-left {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .courses-image-wrapper {
+      position: relative;
+    }
+
+    .organic-image-course {
+      width: 100%;
+      max-width: 440px;
+      height: 440px;
+      object-fit: cover;
+      border-radius: 54% 46% 40% 60% / 50% 55% 45% 50%;
+      box-shadow: 0 15px 35px rgba(85, 60, 68, 0.08);
+    }
+
+    .quote-box {
+      border-left: 2px solid var(--accent-pink);
+      padding-left: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--primary);
+      line-height: 1.4;
+      max-width: 380px;
+    }
+
+    .course-topics {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .course-topic-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .topic-icon-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f7edee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9f7584;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .topic-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .topic-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Seção 4: Sobre */
+    .about-section {
+      padding: 100px 0 140px 0;
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .about-img {
+      width: 360px;
+      height: 450px;
+      border-radius: 46% 46% 48% 48% / 54% 54% 44% 44%;
+      object-fit: cover;
+      box-shadow: 0 15px 35px rgba(85, 60, 68, 0.08);
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-circle-dec {
+      position: absolute;
+      bottom: -15px;
+      right: 35px;
+      width: 90px;
+      height: 90px;
+      border: 1px solid #e1d8d5;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .about-bio {
+      font-size: 0.94rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 42px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 48px;
+      padding-top: 10px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9f9198;
+      font-weight: 600;
+    }
+
+    /* Seção 5: Rodapé / Contato Escuro */
+    footer.footer-section {
+      background-color: var(--dark-footer);
+      color: #ffffff;
+      padding: 100px 0 40px 0;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .footer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem;
+      line-height: 1.12;
+      font-weight: 500;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .footer-subtitle {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #cfc8d8;
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+
+    .btn-pink-light {
+      background-color: #baa2bc;
+      color: #2b2233;
+      padding: 14px 30px;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-pink-light:hover {
+      background-color: #ccb7ce;
+      transform: translateY(-1px);
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      justify-content: center;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .contact-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ded6e6;
+      flex-shrink: 0;
+    }
+
+    .contact-text-wrap span {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aba2b5;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .contact-text-wrap a,
+    .contact-text-wrap p {
+      color: #ffffff;
+      font-size: 0.92rem;
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 36px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #a89fad;
+      font-size: 0.85rem;
+    }
+
+    /* Pílula Flutuante Inferior */
+    .floating-bar-container {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 90;
+    }
+
+    .floating-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9c9197;
+      font-weight: 600;
+    }
+
+    .floating-pill {
+      background: var(--primary);
+      padding: 5px 6px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 8px 24px rgba(41, 30, 52, 0.25);
+    }
+
+    .pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      color: #dfd8e2;
+    }
+
+    .pill-btn.active {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+
+    /* Responsividade */
+    @media (max-width: 968px) {
+      .hero, .courses-grid, .about-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero {
+        text-align: center;
+        padding-top: 20px;
+      }
+
+      .hero-content, .hero-description {
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-title, .section-title, .footer-title {
+        font-size: 2.6rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .stats-row {
+        justify-content: space-around;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Círculos decorativos de fundo -->
-    <div class="bg-circle-top"></div>
-    <div class="bg-circle-bottom"></div>
+  <div class="bg-circle-top"></div>
+  <div class="bg-circle-bottom"></div>
 
-    <!-- Header / Barra de Navegação -->
-    <header>
-        <a href="#" class="logo">
-            <div class="logo-icon">🌿</div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
-    </header>
+  <!-- Header / Navegação -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo">
+        <div class="logo-icon">🌿</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#inicio" class="active">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <main class="hero">
-        <div class="hero-content">
-            <span class="badge-sub">Cuidado Humanizado</span>
-            <h1 class="hero-title">
-                Cuidado acolhedor<br />
-                para cada fase da<br />
-                maternidade
-            </h1>
-            <p class="hero-description">
-                Ofereço orientação especializada e personalizada para gestantes, mães e famílias,
-                desde a gestação até os primeiros dias do bebê, com conhecimento técnico, acolhimento
-                e carinho para que você viva cada fase com mais segurança e tranquilidade.
-            </p>
-            <div class="hero-actions">
-                <a href="#contato" class="btn-primary">Agendar Consulta</a>
-                <a href="#servicos" class="btn-secondary">Conhecer Serviços</a>
-            </div>
-        </div>
-
-        <!-- Imagem em formato orgânico/oval -->
-        <div class="hero-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=900&auto=format&fit=crop"
-                alt="Mão de mãe segurando mão do bebê recém-nascido" class="organic-image" />
-        </div>
-    </main>
-
-    <!-- Barra de Ações Flutuante Inferior -->
-    <div class="floating-bar-container">
-        <span class="floating-label">Explore</span>
-        <div class="floating-pill">
-            <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="pill-btn active">
-                <i data-lucide="message-circle" style="width: 15px; height: 15px;"></i>
-                WhatsApp
-            </a>
-            <a href="#localizacao" class="pill-btn">
-                <i data-lucide="map-pin" style="width: 15px; height: 15px;"></i>
-                Localização
-            </a>
-        </div>
+  <!-- Seção Hero -->
+  <section id="inicio" class="container hero">
+    <div class="hero-content">
+      <span class="badge-sub">Cuidado Humanizado</span>
+      <h1 class="hero-title">
+        Cuidado acolhedor<br />
+        para cada fase da<br />
+        maternidade
+      </h1>
+      <p class="hero-description">
+        Ofereço orientação especializada e personalizada para gestantes, mães e famílias,
+        desde a gestação até os primeiros dias do bebê, com conhecimento técnico, acolhimento
+        e carinho para que você viva cada fase com mais segurança e tranquilidade.
+      </p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary">Agendar Consulta</a>
+        <a href="#servicos" class="btn-secondary">Conhecer Serviços</a>
+      </div>
     </div>
 
-    <script>
-        // Inicializa os ícones SVG do Lucide
-        lucide.createIcons();
-    </script>
-</body>
+    <div class="hero-image-wrapper">
+      <img
+        src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=900&auto=format&fit=crop"
+        alt="Mão de mãe segurando a mão do bebê"
+        class="organic-image"
+      />
+    </div>
+  </section>
 
+  <!-- Seção 2: Sessão de Serviços (Carrossel) -->
+  <section id="servicos" class="container services-section">
+    <div class="services-header">
+      <div>
+        <span class="badge-sub">Especialidades</span>
+        <h2 class="section-title">Sessão de Serviços</h2>
+      </div>
+      <div class="carousel-arrows">
+        <button class="arrow-btn" onclick="document.getElementById('servicesScroll').scrollBy({ left: -300, behavior: 'smooth' })" aria-label="Anterior">
+          <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+        </button>
+        <button class="arrow-btn" onclick="document.getElementById('servicesScroll').scrollBy({ left: 300, behavior: 'smooth' })" aria-label="Próximo">
+          <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="services-scroll" id="servicesScroll">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=600&auto=format&fit=crop" alt="Curso de Gestante" />
+        <div class="service-card-body">
+          <h3 class="service-card-title">Curso de Gestante</h3>
+          <p class="service-card-desc">
+            Prepare-se para a chegada do seu bebê com mais confiança. Receba orientações personalizadas sobre gestação, parto, puerpério e os primeiros cuidados com o recém-nascido.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=600&auto=format&fit=crop" alt="Consultoria de Amamentação" />
+        <div class="service-card-body">
+          <h3 class="service-card-title">Consultoria de Amamentação</h3>
+          <p class="service-card-desc">
+            Amamentar não precisa ser um processo doloroso ou solitário. Ofereço acompanhamento individualizado para auxiliar na pega correta, ganho de peso do bebê e prevenção de intercorrências.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?q=80&w=600&auto=format&fit=crop" alt="Taping na Gestação e Pós-Parto" />
+        <div class="service-card-body">
+          <h3 class="service-card-title">Taping na Gestação e Pós-Parto</h3>
+          <p class="service-card-desc">
+            Uma técnica segura e confortável que auxilia no alívio das dores, melhora da circulação, redução de inchaços e suporte muscular durante a gestação e no pós-parto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=600&auto=format&fit=crop" alt="Laserterapia" />
+        <div class="service-card-body">
+          <h3 class="service-card-title">Laserterapia</h3>
+          <p class="service-card-desc">
+            Tratamento seguro e eficaz para auxiliar na cicatrização e aliviar desconfortos. Indicado para fissuras mamilares, assaduras e processos inflamatórios, promovendo recuperação rápida.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 3: Cursos para Casais -->
+  <section id="cursos" class="container courses-section">
+    <div class="courses-grid">
+      <div class="courses-left">
+        <div class="courses-image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop"
+            alt="Casal lendo juntos no sofá aguardando o bebê"
+            class="organic-image-course"
+          />
+        </div>
+        <div class="quote-box">
+          "Uma maternidade informada é uma maternidade confiante."
+        </div>
+      </div>
+
+      <div class="courses-right">
+        <span class="badge-sub">Educação</span>
+        <h2 class="section-title">Cursos para Casais</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px;">
+          Prepare-se para receber seu bebê com mais tranquilidade, confiança e segurança. Um encontro acolhedor e prático para que você e seu acompanhante se sintam preparados para os primeiros cuidados.
+        </p>
+
+        <div class="course-topics">
+          <div class="course-topic-item">
+            <div class="topic-icon-badge">
+              <i data-lucide="heart" style="width: 17px; height: 17px;"></i>
+            </div>
+            <div class="topic-content">
+              <h4>Amamentação</h4>
+              <p>Aprenda técnicas práticas para uma amamentação mais tranquila, incluindo pega correta, posições, sinais de fome e prevenção de dificuldades comuns.</p>
+            </div>
+          </div>
+
+          <div class="course-topic-item">
+            <div class="topic-icon-badge">
+              <i data-lucide="baby" style="width: 17px; height: 17px;"></i>
+            </div>
+            <div class="topic-content">
+              <h4>Cuidados com o Recém-Nascido</h4>
+              <p>Tudo o que você precisa saber sobre banho, troca de fraldas, higiene, cuidados com o coto umbilical, sono e rotina do bebê.</p>
+            </div>
+          </div>
+
+          <div class="course-topic-item">
+            <div class="topic-icon-badge">
+              <i data-lucide="shield-plus" style="width: 17px; height: 17px;"></i>
+            </div>
+            <div class="topic-content">
+              <h4>Primeiros Socorros</h4>
+              <p>Orientações essenciais para agir com segurança em situações como engasgo, quedas e outras intercorrências que podem acontecer nos primeiros meses.</p>
+            </div>
+          </div>
+
+          <div class="course-topic-item">
+            <div class="topic-icon-badge">
+              <i data-lucide="users" style="width: 17px; height: 17px;"></i>
+            </div>
+            <div class="topic-content">
+              <h4>Pós-parto e Rede de Apoio</h4>
+              <p>Entenda as mudanças físicas e emocionais do puerpério e como o acompanhante pode participar ativamente desse momento com suporte real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 4: Sobre (Suellen Stuqui) -->
+  <section id="sobre" class="container about-section">
+    <div class="about-grid">
+      <div class="about-image-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1594824813677-22d71d32095f?q=80&w=800&auto=format&fit=crop"
+          alt="Suellen Stuqui - Enfermeira Obstetra"
+          class="about-img"
+        />
+        <div class="about-circle-dec"></div>
+      </div>
+
+      <div class="about-content">
+        <span class="badge-sub">Sobre</span>
+        <h2 class="section-title">Suellen Stuqui</h2>
+        
+        <div class="about-bio">
+          <p>
+            Sou enfermeira, Obstetra e Emergencista especialista em cuidados materno infantil e apaixonada por acompanhar famílias em um dos momentos mais transformadores da vida. Minha trajetória na amamentação começou com desafios vividos na prática, o que despertou ainda mais meu desejo de estudar e ajudar outras mães a encontrarem segurança, acolhimento e confiança nessa jornada.
+          </p>
+          <p>
+            Acredito que cada família merece ser cuidada de forma única, respeitosa e humanizada, unindo conhecimento técnico, empatia e carinho em cada atendimento.
+          </p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">6+</span>
+            <span class="stat-label">Especialidades</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Humanizado</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Dedicação</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 5: Rodapé / Contato Escuro -->
+  <footer id="contato" class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-title">Vamos Iniciar essa Jornada Juntas?</h2>
+          <p class="footer-subtitle">
+            Entre em contato para agendar sua consulta ou tirar dúvidas sobre os serviços oferecidos. Será um prazer acompanhar você nessa fase tão especial.
+          </p>
+          <a href="https://wa.me/5511964277449" target="_blank" class="btn-pink-light">
+            Falar pelo WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-info-list">
+          <div class="contact-item">
+            <div class="contact-icon-circle">
+              <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div class="contact-text-wrap">
+              <span>Telefone / WhatsApp</span>
+              <a href="https://wa.me/5511964277449" target="_blank">+55 (11) 96427-7449</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-circle">
+              <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div class="contact-text-wrap">
+              <span>E-mail</span>
+              <a href="mailto:suellenstuqui@gmail.com">suellenstuqui@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-circle">
+              <i data-lucide="map-pin" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div class="contact-text-wrap">
+              <span>Atendimento Presencial</span>
+              <p>Rua Dr. Zuquim, 449, Sala 51, Santana São Paulo - SP CEP 02035-010</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-circle">
+              <i data-lucide="instagram" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div class="contact-text-wrap">
+              <span>Instagram</span>
+              <a href="https://instagram.com/suellenstuqui" target="_blank">@suellenstuqui</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider" />
+
+      <div class="footer-bottom">
+        <div class="logo" style="color: #ffffff;">
+          <div class="logo-icon" style="border-color: rgba(255,255,255,0.3); font-size: 16px;">🌿</div>
+        </div>
+        <p>© 2026 Todos os direitos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra Flutuante Inferior -->
+  <div class="floating-bar-container">
+    <span class="floating-label">Explore</span>
+    <div class="floating-pill">
+      <a href="https://wa.me/5511964277449" target="_blank" class="pill-btn active">
+        <i data-lucide="message-circle" style="width: 15px; height: 15px;"></i>
+        WhatsApp
+      </a>
+      <a href="#contato" class="pill-btn">
+        <i data-lucide="map-pin" style="width: 15px; height: 15px;"></i>
+        Localização
+      </a>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
 </html>
